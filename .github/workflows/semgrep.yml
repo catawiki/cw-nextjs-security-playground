@@ -31,10 +31,10 @@ jobs:
       - name: run semgrep
         id: run_semgrep
         env:
-          SEMGREP_RULES: $configs
+          SEMGREP_RULES: ${{ env.configs }}
           SEMGREP_ENABLE_VERSION_CHECK: 0
           SEMGREP_SEND_METRICS: off
-          SEMGREP_BASELINE_COMMIT: $baseline_commit
+          SEMGREP_BASELINE_COMMIT: ${{ env.baseline_commit }}
         shell: bash
         run: |
           set +o pipefail
