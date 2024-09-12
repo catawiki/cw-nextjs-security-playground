@@ -1,0 +1,44 @@
+name: Semgrep scan
+
+on:
+  workflow_dispatch:
+  pull_request:
+env:
+  configs: "p/ci p/security-audit p/owasp-top-ten"
+  baseline_commit: ${{ github.event.pull_request.base.sha }}
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  semgrep:
+    name: Run Semgrep
+    runs-on: ubuntu-latest
+    container:
+      image: returntocorp/semgrep:1.86
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch the entire history
+      - name: Mark the Git repository as safe
+        run: |
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+      - name: Fetch all branches and tags
+        run: |
+          git fetch --all
+          git fetch --tags
+      - name: run semgrep
+        id: run_semgrep
+        env:
+          SEMGREP_RULES: ${{ env.configs }}
+          SEMGREP_ENABLE_VERSION_CHECK: 0
+          SEMGREP_SEND_METRICS: off
+          SEMGREP_BASELINE_COMMIT: ${{ env.baseline_commit }}
+        shell: bash
+        run: |
+          set +o pipefail
+          semgrep scan . --gitlab-sast -o /tmp/semgrep.json
+      - name: Show Semgrep report
+        if: success() || failure()
+        run: cat /tmp/semgrep.json 

@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/semgrep/semgrep
+    rev: "v1.86.0"
+    hooks:
+      - id: semgrep
+        args:
+          [
+            "--config",
+            "p/ci",
+            "--error",
+            "--skip-unknown-extensions",
+            "--metrics",
+            "off",
+          ]
+        stages: [pre-push]
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        stages: [pre-commit]
+        args: ["--baseline", ".secrets.baseline"]
+        exclude: yarn.lock
