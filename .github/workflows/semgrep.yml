@@ -31,7 +31,7 @@ jobs:
       - name: run semgrep
         id: run_semgrep
         env:
-          SEMGREP_RULES: $inputs.configs
+          SEMGREP_RULES: $configs
           SEMGREP_ENABLE_VERSION_CHECK: 0
           SEMGREP_SEND_METRICS: off
           SEMGREP_BASELINE_COMMIT: $baseline_commit
