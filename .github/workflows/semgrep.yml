@@ -5,7 +5,6 @@ on:
   pull_request:
 env:
   configs: "p/ci p/security-audit p/owasp-top-ten"
-  baseline_commit: ${{ github.event.pull_request.base.sha }}
 
 permissions:
   contents: read
@@ -34,7 +33,6 @@ jobs:
           SEMGREP_RULES: ${{ env.configs }}
           SEMGREP_ENABLE_VERSION_CHECK: 0
           SEMGREP_SEND_METRICS: off
-          SEMGREP_BASELINE_COMMIT: ${{ env.baseline_commit }}
         shell: bash
         run: |
           set +o pipefail
