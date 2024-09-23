@@ -5,7 +5,7 @@ repos:
       - id: semgrep
         args:
           - --config
-          - rules/
+          - 'rules/ p/ci'
           - --error
           - --skip-unknown-extensions
           - --metrics
