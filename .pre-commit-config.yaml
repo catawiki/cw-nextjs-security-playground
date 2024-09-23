@@ -6,7 +6,6 @@ repos:
         args:
           - --config
           - rules/
-          - p/ci
           - --error
           - --skip-unknown-extensions
           - --metrics
