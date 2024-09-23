@@ -1,22 +1,25 @@
 repos:
   - repo: https://github.com/semgrep/semgrep
-    rev: "v1.86.0"
+    rev: '768d0f4c3ccb4b1740eef22bbbd57fc936450df2'  # frozen: v1.84.1
     hooks:
       - id: semgrep
         args:
-          [
-            "--config",
-            "p/ci",
-            "--error",
-            "--skip-unknown-extensions",
-            "--metrics",
-            "off",
-          ]
-        stages: [pre-push]
+          - --config
+          - rules/
+          - p/ci
+          - --error
+          - --skip-unknown-extensions
+          - --metrics
+          - 'off'
+        stages:
+          - pre-push
   - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.5.0
+    rev: '68e8b45440415753fff70a312ece8da92ba85b4a'  # frozen: v1.5.0
     hooks:
       - id: detect-secrets
-        stages: [pre-commit]
-        args: ["--baseline", ".secrets.baseline"]
-        exclude: yarn.lock
+        args:
+          - --baseline
+          - .secrets.baseline
+        stages:
+          - pre-commit
+        exclude: package-lock.json
