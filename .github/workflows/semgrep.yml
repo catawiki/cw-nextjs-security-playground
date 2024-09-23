@@ -35,7 +35,6 @@ jobs:
           SEMGREP_SEND_METRICS: off
         shell: bash
         run: |
-          set +o pipefail
           semgrep scan . --gitlab-sast -o /tmp/semgrep.json
       - name: Show Semgrep report
         if: success() || failure()

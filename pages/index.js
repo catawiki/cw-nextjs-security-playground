@@ -40,7 +40,7 @@ export default function Home() {
 
         <div className={styles.grid}>
         </div>
-        <h2>Comments and hash leak: 68e8b45440415753fff70a312ece8da92ba85b4a</h2>
+        <h2>Comments, Oops "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY3Mjc2NjAyOCwiZXhwIjoxNjc0NDk0MDI4fQ.kCak9sLJr74frSRVQp0_27BY4iBCgQSmoT3vQVWKzJg"</h2>
         <ul>
           {comments.map((comment, index) => (
             <li dangerouslySetInnerHTML={{ __html: comment }} key={index} />
