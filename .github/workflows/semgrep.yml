@@ -35,7 +35,7 @@ jobs:
           SEMGREP_SEND_METRICS: off
         shell: bash
         run: |
-          semgrep scan . --gitlab-sast -o /tmp/semgrep.json
+          semgrep scan . --strict --gitlab-sast -o /tmp/semgrep.json
       - name: Show Semgrep report
         if: success() || failure()
         run: cat /tmp/semgrep.json 
