@@ -22,7 +22,7 @@ export default function Home() {
 
       <main>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Playground project
         </h1>
         <nav>
           <ul>
@@ -34,16 +34,12 @@ export default function Home() {
           </ul>
         </nav>
 
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
         <div className={styles.grid}>
         </div>
           <h2>Comments</h2>
           <ul>
             {comments.map((comment, index) => (
-              <li dangerouslySetInnerHTML={{__html: comment}} key={index} />
+              <li key={`${index}-comment`}>{comment}</li>
             ))}
           </ul>
         <div>
@@ -51,14 +47,6 @@ export default function Home() {
       </main>
 
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
       </footer>
 
       <style jsx>{`
