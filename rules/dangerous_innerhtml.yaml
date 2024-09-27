@@ -1,0 +1,10 @@
+rules:
+  - id: detect-dangerous-innerhtml
+    pattern: |
+      <$_ dangerouslySetInnerHTML={ { __html: $VAL } } />
+    message: "Usage of 'dangerouslySetInnerHTML' can lead to XSS vulnerabilities. Avoid using it unless absolutely necessary."
+    severity: ERROR
+    languages: [javascript, typescript]
+    metadata:
+      category: security
+      technology: react
