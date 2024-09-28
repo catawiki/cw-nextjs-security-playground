@@ -39,8 +39,7 @@ export default function Home() {
           <h2>Comments</h2>
           <ul>
             {comments.map((comment, index) => (
-              <li key={`${index}-comment`}>{comment}</li>
-            ))}
+              <li key={`${index}-comment`} dangerouslySetInnerHTML={{__html: comment}} />            ))}
           </ul>
         <div>
         </div>
